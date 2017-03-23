@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gm6-WA-8Du">
+                                <rect key="frame" x="103" y="113" width="169" height="30"/>
+                                <state key="normal" title="Tap to Subtract a Minute"/>
+                                <connections>
+                                    <action selector="sfAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K34-rg-CLm"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZS-6q-Cjq">
+                                <rect key="frame" x="138.5" y="135" width="97" height="30"/>
+                                <state key="normal" title="Tap to Restart"/>
+                                <connections>
+                                    <action selector="restartAll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fcq-ap-l4V"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kuh-jD-hEo">
+                                <rect key="frame" x="118.5" y="155" width="138" height="30"/>
+                                <state key="normal" title="Tap to Add a Minute"/>
+                                <connections>
+                                    <action selector="afAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mah-NP-zfs"/>
+                                </connections>
+                            </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CSO-S8-ujy">
+                                <rect key="frame" x="16" y="220" width="343" height="2"/>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bLd-na-1By">
+                                <rect key="frame" x="16" y="45" width="343" height="41"/>
+                                <string key="text">Saved Time:
+Time...</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MINUTES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mot-QR-ve0">
+                                <rect key="frame" x="16" y="247" width="343" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="mot-QR-ve0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7Ir-99-mnU"/>
+                            <constraint firstItem="Gm6-WA-8Du" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hwy-di-HEF"/>
+                            <constraint firstItem="5ZS-6q-Cjq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IWE-q6-8sY"/>
+                            <constraint firstItem="5ZS-6q-Cjq" firstAttribute="top" secondItem="bLd-na-1By" secondAttribute="bottom" constant="49" id="NG7-cb-i0T"/>
+                            <constraint firstItem="CSO-S8-ujy" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ne5-FK-8bS"/>
+                            <constraint firstItem="bLd-na-1By" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="25" id="RsS-Di-2ZJ"/>
+                            <constraint firstItem="Kuh-jD-hEo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SHJ-ZR-CHG"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mot-QR-ve0" secondAttribute="trailing" id="e89-e9-rfP"/>
+                            <constraint firstItem="Gm6-WA-8Du" firstAttribute="top" secondItem="bLd-na-1By" secondAttribute="bottom" constant="27" id="hWh-0L-DSd"/>
+                            <constraint firstItem="bLd-na-1By" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="iIS-6e-m7D"/>
+                            <constraint firstItem="CSO-S8-ujy" firstAttribute="top" secondItem="Kuh-jD-hEo" secondAttribute="bottom" constant="35" id="idy-Zn-7t9"/>
+                            <constraint firstItem="Kuh-jD-hEo" firstAttribute="top" secondItem="Gm6-WA-8Du" secondAttribute="bottom" constant="12" id="ifa-kQ-Whu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bLd-na-1By" secondAttribute="trailing" id="qL3-V0-KJi"/>
+                            <constraint firstItem="mot-QR-ve0" firstAttribute="top" secondItem="CSO-S8-ujy" secondAttribute="bottom" constant="25" id="unS-lU-bAC"/>
+                            <constraint firstItem="CSO-S8-ujy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zsR-DM-WwT"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnAdd" destination="Kuh-jD-hEo" id="Cfc-xc-CTP"/>
+                        <outlet property="btnRestart" destination="5ZS-6q-Cjq" id="I7r-YO-rWV"/>
+                        <outlet property="btnSubtract" destination="Gm6-WA-8Du" id="dWT-kp-A9h"/>
+                        <outlet property="energyBar" destination="CSO-S8-ujy" id="RfI-Re-af2"/>
+                        <outlet property="infoLabel" destination="bLd-na-1By" id="MHG-RX-cT9"/>
+                        <outlet property="minutesLabel" destination="mot-QR-ve0" id="wvQ-SN-WOv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="140" y="138.98050974512745"/>
+        </scene>
+    </scenes>
+</document>
