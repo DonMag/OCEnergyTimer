@@ -42,7 +42,7 @@ NSDate *_lastDate;
 	
 	NSTimeInterval timeInterval = [now timeIntervalSinceDate:_lastDate];
 	
-	if (timeInterval > 600) {
+	if (timeInterval >= 600) {
 		
 		// 10 minutes (or more) has already elapsed since the time was saved
 		// so Show the Restart button
@@ -70,7 +70,7 @@ NSDate *_lastDate;
 
 - (void)restartTimer {
 	
-	_minuteTimer = [NSTimer scheduledTimerWithTimeInterval: (1 * 60)
+	_minuteTimer = [NSTimer scheduledTimerWithTimeInterval: (1)
 													target:self
 												  selector:@selector(upgradeEnergyBar)
 												  userInfo:nil
@@ -89,13 +89,22 @@ NSDate *_lastDate;
 
 	NSTimeInterval timeInterval = [now timeIntervalSinceDate:_lastDate];
 
-	NSInteger minutes = MIN(10, (NSInteger)(timeInterval / 60.0));
+	// don't allow timeInterval to be greater than 10 minutes
+	timeInterval = timeInterval < 600.0 ? timeInterval : 600.0;
+
+	float pct = timeInterval / 600.0;
+
+	// will never be > 1, but just in case
+	_energyBar.progress = pct < 1.0 ? pct : 1.0;
+
+	// convert elapsed time to time remaining
+	NSTimeInterval remain = 600.0 - timeInterval;
+	NSUInteger minutes = (NSUInteger)floor(remain / 60.0);
+	NSUInteger seconds = (NSUInteger)remain % 60;
 	
-	_energyBar.progress = minutes * 0.1;
+	_minutesLabel.text = [NSString stringWithFormat:@"Recover in %02ld:%02ld", minutes, seconds];
 	
-	_minutesLabel.text = [NSString stringWithFormat:@"Minutes: %ld  /  Percent: %ld%%", (long)minutes, (long)(minutes * 10)];
-	
-	if (minutes == 10) {
+	if (timeInterval == 600.0) {
 	
 		// kill the timer
 		[_minuteTimer invalidate];
@@ -132,6 +141,12 @@ NSDate *_lastDate;
 	
 	// subtract one minute (60 seconds) from the "lastTime" - will decrease time remaining
 	_lastDate = [_lastDate dateByAddingTimeInterval:-60];
+	
+	// get current date/time Minus 10 minutes (600 seconds)
+	NSDate *nowMinus10 = [[NSDate date] dateByAddingTimeInterval:-600];
+	
+	// never let _lastDate be more than 10 minutes ago
+	_lastDate = [_lastDate laterDate:nowMinus10];
 	
 	// save it back to User Defaults
 	[[NSUserDefaults standardUserDefaults] setObject:_lastDate forKey:@"open"];
