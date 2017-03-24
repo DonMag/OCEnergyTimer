@@ -23,24 +23,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gm6-WA-8Du">
-                                <rect key="frame" x="103" y="113" width="169" height="30"/>
+                                <rect key="frame" x="103" y="123" width="169" height="30"/>
                                 <state key="normal" title="Tap to Subtract a Minute"/>
                                 <connections>
                                     <action selector="sfAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K34-rg-CLm"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ZS-6q-Cjq">
-                                <rect key="frame" x="138.5" y="135" width="97" height="30"/>
-                                <state key="normal" title="Tap to Restart"/>
-                                <connections>
-                                    <action selector="restartAll:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Fcq-ap-l4V"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kuh-jD-hEo">
-                                <rect key="frame" x="118.5" y="155" width="138" height="30"/>
-                                <state key="normal" title="Tap to Add a Minute"/>
-                                <connections>
-                                    <action selector="afAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mah-NP-zfs"/>
                                 </connections>
                             </button>
                             <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="CSO-S8-ujy">
@@ -65,24 +51,18 @@ Time...</string>
                         <constraints>
                             <constraint firstItem="mot-QR-ve0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7Ir-99-mnU"/>
                             <constraint firstItem="Gm6-WA-8Du" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hwy-di-HEF"/>
-                            <constraint firstItem="5ZS-6q-Cjq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IWE-q6-8sY"/>
-                            <constraint firstItem="5ZS-6q-Cjq" firstAttribute="top" secondItem="bLd-na-1By" secondAttribute="bottom" constant="49" id="NG7-cb-i0T"/>
                             <constraint firstItem="CSO-S8-ujy" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ne5-FK-8bS"/>
                             <constraint firstItem="bLd-na-1By" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="25" id="RsS-Di-2ZJ"/>
-                            <constraint firstItem="Kuh-jD-hEo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SHJ-ZR-CHG"/>
+                            <constraint firstItem="CSO-S8-ujy" firstAttribute="top" secondItem="Gm6-WA-8Du" secondAttribute="bottom" constant="67" id="UIx-iS-uX8"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mot-QR-ve0" secondAttribute="trailing" id="e89-e9-rfP"/>
-                            <constraint firstItem="Gm6-WA-8Du" firstAttribute="top" secondItem="bLd-na-1By" secondAttribute="bottom" constant="27" id="hWh-0L-DSd"/>
+                            <constraint firstItem="Gm6-WA-8Du" firstAttribute="top" secondItem="bLd-na-1By" secondAttribute="bottom" constant="37" id="hWh-0L-DSd"/>
                             <constraint firstItem="bLd-na-1By" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="iIS-6e-m7D"/>
-                            <constraint firstItem="CSO-S8-ujy" firstAttribute="top" secondItem="Kuh-jD-hEo" secondAttribute="bottom" constant="35" id="idy-Zn-7t9"/>
-                            <constraint firstItem="Kuh-jD-hEo" firstAttribute="top" secondItem="Gm6-WA-8Du" secondAttribute="bottom" constant="12" id="ifa-kQ-Whu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bLd-na-1By" secondAttribute="trailing" id="qL3-V0-KJi"/>
                             <constraint firstItem="mot-QR-ve0" firstAttribute="top" secondItem="CSO-S8-ujy" secondAttribute="bottom" constant="25" id="unS-lU-bAC"/>
                             <constraint firstItem="CSO-S8-ujy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="zsR-DM-WwT"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btnAdd" destination="Kuh-jD-hEo" id="Cfc-xc-CTP"/>
-                        <outlet property="btnRestart" destination="5ZS-6q-Cjq" id="I7r-YO-rWV"/>
                         <outlet property="btnSubtract" destination="Gm6-WA-8Du" id="dWT-kp-A9h"/>
                         <outlet property="energyBar" destination="CSO-S8-ujy" id="RfI-Re-af2"/>
                         <outlet property="infoLabel" destination="bLd-na-1By" id="MHG-RX-cT9"/>

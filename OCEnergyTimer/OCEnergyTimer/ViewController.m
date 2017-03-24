@@ -17,8 +17,6 @@
 
 // buttons
 @property (weak, nonatomic) IBOutlet UIButton *btnSubtract;
-@property (weak, nonatomic) IBOutlet UIButton *btnAdd;
-@property (weak, nonatomic) IBOutlet UIButton *btnRestart;
 
 @end
 
@@ -37,7 +35,7 @@ NSDate *_lastDate;
 		_lastDate = [NSDate date];
 		[[NSUserDefaults standardUserDefaults] setObject:_lastDate forKey:@"open"];
 	}
-	
+
 	NSDate *now = [NSDate date];
 	
 	NSTimeInterval timeInterval = [now timeIntervalSinceDate:_lastDate];
@@ -45,23 +43,17 @@ NSDate *_lastDate;
 	if (timeInterval >= 600) {
 		
 		// 10 minutes (or more) has already elapsed since the time was saved
-		// so Show the Restart button
-		_btnRestart.hidden = NO;
+		// so don't start the Timer
 		
 	} else {
 		
 		// less than 10 minutes elapsed since the time was saved
-		// so Hide the Restart button
-		_btnRestart.hidden = YES;
+		// so start the Minute Timer
 		
-		// and start the Minute Timer
 		[self restartTimer];
 		
 	}
 
-	// show or hide Add and Subtract buttons as appropriate
-	_btnSubtract.hidden = _btnAdd.hidden = !_btnRestart.hidden;
-	
 	[self updateInfoLabel];
 	
 	[self upgradeEnergyBar];
@@ -69,12 +61,16 @@ NSDate *_lastDate;
 }
 
 - (void)restartTimer {
-	
-	_minuteTimer = [NSTimer scheduledTimerWithTimeInterval: (1)
-													target:self
-												  selector:@selector(upgradeEnergyBar)
-												  userInfo:nil
-												   repeats:YES];
+
+	// start the timer only if it is not already running
+	if (!_minuteTimer || ![_minuteTimer isValid]) {
+		
+		_minuteTimer = [NSTimer scheduledTimerWithTimeInterval: (1)
+														target:self
+													  selector:@selector(upgradeEnergyBar)
+													  userInfo:nil
+													   repeats:YES];
+	}
 	
 }
 
@@ -109,51 +105,7 @@ NSDate *_lastDate;
 		// kill the timer
 		[_minuteTimer invalidate];
 		
-		// show Restart button, hide Add/Subtract buttons
-		_btnRestart.hidden = NO;
-		_btnSubtract.hidden = _btnAdd.hidden = !_btnRestart.hidden;
-		
-		NSLog(@"end");
-		
 	}
-}
-
-- (IBAction)restartAll:(id)sender {
-
-	// set lastDate to now, save it to User Defaults
-	_lastDate = [NSDate date];
-	[[NSUserDefaults standardUserDefaults] setObject:_lastDate forKey:@"open"];
-
-	// hide Restart button, show Add/Subtract buttons
-	_btnRestart.hidden = YES;
-	_btnSubtract.hidden = _btnAdd.hidden = !_btnRestart.hidden;
-	
-	// start the timer
-	[self restartTimer];
-
-	// update the UI
-	[self updateInfoLabel];
-	[self upgradeEnergyBar];
-
-}
-
-- (IBAction)afAction:(id)sender {
-	
-	// subtract one minute (60 seconds) from the "lastTime" - will decrease time remaining
-	_lastDate = [_lastDate dateByAddingTimeInterval:-60];
-	
-	// get current date/time Minus 10 minutes (600 seconds)
-	NSDate *nowMinus10 = [[NSDate date] dateByAddingTimeInterval:-600];
-	
-	// never let _lastDate be more than 10 minutes ago
-	_lastDate = [_lastDate laterDate:nowMinus10];
-	
-	// save it back to User Defaults
-	[[NSUserDefaults standardUserDefaults] setObject:_lastDate forKey:@"open"];
-	
-	[self updateInfoLabel];
-	[self upgradeEnergyBar];
-	
 }
 
 - (IBAction)sfAction:(id)sender {
@@ -167,9 +119,20 @@ NSDate *_lastDate;
 	// use the earlier date/time (to avoid a date/time in the future)
 	_lastDate = [_lastDate earlierDate:now];
 	
+	// IF _lastDate is older than 10 minutes ago (for example, app has been closed for an hour)
+	// set _lastDate to 9 minutes ago
+	NSTimeInterval timeInterval = [now timeIntervalSinceDate:_lastDate];
+	if (timeInterval > 600) {
+		_lastDate = [now dateByAddingTimeInterval:-540];
+	}
+	
 	// save it back to User Defaults
 	[[NSUserDefaults standardUserDefaults] setObject:_lastDate forKey:@"open"];
 	
+	// Timer will only restart if it's not running
+	// If user has tapped Subtract, we ALWAYS want the Timer to be running
+	[self restartTimer];
+
 	[self updateInfoLabel];
 	[self upgradeEnergyBar];
 	
